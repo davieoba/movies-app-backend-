@@ -1,0 +1,76 @@
+[
+	{
+		"title": "Pirates of the Carribean 1 (Curse of the Black Pearl)",
+		"year": "2003",
+		"cast": [
+			"Johnny Depp",
+			"Geoffrey Rush",
+			"Orlando Bloom",
+			"Keira Knightley",
+			"Lee Arenberg",
+			"Mackenzie Crook",
+			"Kevin McNally"
+		],
+		"storyline": "This swash-buckling tale follows the quest of Captain Jack Sparrow, a savvy pirate, and Will Turner, a resourceful blacksmith, as they search for Elizabeth Swann. Elizabeth, the daughter of the governor and the love of Will's life, has been kidnapped by the feared Captain Barbossa. Little do they know, but the fierce and clever Barbossa has been cursed. He, along with his large crew, are under an ancient curse, doomed for eternity to neither live, nor die. That is, unless a blood sacrifice is made",
+		"genre": ["action", "adventure", "fantasy"],
+		"directors": ["Gore Verbinski"]
+	},
+	{
+		"title": "Ratatouille",
+		"year": "2007",
+		"cast": [
+			"Patton Oswalt",
+			"Ian Holm",
+			"Brad Garret",
+			"Lou Romano",
+			"Janeane Garofalo"
+		],
+		"storyline": "A rat named Remy dreams of becoming a great French chef despite his family's wishes and the obvious problem of being a rat in a decidedly rodent-phobic profession. When fate places Remy in the sewers of Paris, he finds himself ideally situated beneath a restaurant made famous by his culinary hero, Auguste Gusteau. Despite the apparent dangers of being an unlikely, and certainly unwanted, visitor in the kitchen of a fine French restaurant, Remy's passion for cooking soon sets into motion a hilarious and exciting rat race that turns the culinary world of Paris upside down",
+		"genre": ["animation", "comedy", "fantasy", "adventure"],
+		"directors": ["Brad Bird", "Jan Pinkava"]
+	},
+	{
+		"title": "Rush Hour 1",
+		"year": "1998",
+		"cast": [
+			"Jackie Chan",
+			"Chris Tucker",
+			"Tzi Ma",
+			"Michael Chow",
+			"Julia Hsu"
+		],
+		"storyline": "Cultures clash and tempers flares as the two cops named Detective Inspector Lee a Hong Kong Detective and Detective James Carter FBI, a big-mouthed work-alone Los Angeles cop who are from different worlds discovers one thing in common: they can't stand each other. With time running out, they must join forces to catch the criminals and save the eleven-year-old Chinese girl of the Chinese consul named Soo Yung",
+		"genre": ["crime", "action", "comedy", "thriller"],
+		"directors": ["Brett Ratner"]
+	},
+	{
+		"title": "Naruto: Shippuden",
+		"year": "1997",
+		"cast": [
+			"Junko Takeuchi",
+			"Dave Wittenberg",
+			"Yuri Lowenthal",
+			"skip stellrecht",
+			"Crispin Freeman",
+			"Vic Mignogna"
+		],
+		"storyline": "Naruto Uzumaki wants to be the best ninja in the land. He's done well so far, but with the looming danger posed by the mysterious Akatsuki organization, Naruto knows he must train harder than ever and leaves his village for intense exercises that will push him to his limits.",
+		"genre": ["anime", "action", "adventure", "comedy", "fantasy", "drama"],
+		"directors": ["Masashi Kishimoto"]
+	},
+	{
+		"title": "The Office",
+		"year": "2005",
+		"cast": [
+			"Steve Carell",
+			"Rainn Wilson",
+			"John Krasinski",
+			"Jenna Fisher",
+			"Kate Flannery",
+			"Ed Helms"
+		],
+		"storyline": "A mediocre paper company in the hands of Scranton, PA branch manager Michael Scott. This mockumentary follows the everyday lives of the manager and the employees he manages. The crew follows the employees around 24/7 and captures their quite humorous and bizarre encounters as they will do what it takes to keep the company thriving",
+		"genre": ["comedy"],
+		"directors": ["Greg Daniels", "Ricky Garvis", "Stephen Merchant"]
+	}
+]
