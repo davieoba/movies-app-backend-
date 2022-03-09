@@ -1,35 +1,35 @@
-const movieController = require("./../controllers/movie-controller");
-const userController = require("./../controllers/user-controller");
-const reviewController = require("./../controllers/review-controller");
+const movieController = require('./../controllers/movie-controller')
+const userController = require('./../controllers/user-controller')
+const reviewController = require('./../controllers/review-controller')
 
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 router
-  .route("/")
+  .route('/')
   .post(
     userController.protect,
-    userController.restrictTo("admin, creator"),
+    userController.restrictTo('admin', 'creator'),
     movieController.createMovie
   )
-  .get(movieController.getMovies);
+  .get(movieController.getMovies)
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(movieController.getMovie)
   .patch(
     userController.protect,
-    userController.restrictTo("creator", "admin"),
+    userController.restrictTo('creator', 'admin'),
     movieController.updateMovie
   )
   .delete(
     userController.protect,
-    userController.restrictTo("admin"),
+    userController.restrictTo('admin'),
     movieController.deleteMovie
-  );
+  )
 
 router
-  .route("/:id/reviews")
-  .post(userController.protect, reviewController.createReview);
+  .route('/:id/reviews')
+  .post(userController.protect, reviewController.createReview)
 
-module.exports = router;
+module.exports = router
