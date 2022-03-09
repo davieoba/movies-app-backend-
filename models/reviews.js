@@ -1,27 +1,27 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const reviewSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User'
   },
   movie: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Movie",
+    ref: 'Movie'
   },
   rating: {
     type: Number,
-    defafult: 4,
+    default: 4,
     min: 1,
-    max: 5,
+    max: 5
   },
   review: {
     type: String,
     minlength: 10,
     maxlength: 350,
-    required: [true, "A review should be atleast 10 characters"],
-  },
-});
+    required: [true, 'A review should be atleast 10 characters']
+  }
+})
 
-const Review = mongoose.model("Review", reviewSchema);
-module.exports = Review;
+const Review = mongoose.model('Review', reviewSchema)
+module.exports = Review

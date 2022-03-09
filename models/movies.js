@@ -19,10 +19,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
     minLength: 10,
     maxLength: 750,
-    default: 'A description has not been added for this movie'
+    required: [true, 'A description has not been added for this movie']
   },
   genre: {
-    type: [String],
+    type: String,
     enum: [
       'action',
       'adventure',
