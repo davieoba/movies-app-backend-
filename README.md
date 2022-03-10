@@ -26,3 +26,4 @@ backend
 ```
 - [ ] in the `/dev-data` folder run the code `node import-devData.js --import `  --> to import the development data
 - [ ] also to delete the development data run `node import-devData.js --delete` 
+- [ ] also create the .env file from the contents of .env.example (it doesn't have to be the same thing) but the dotenv package is configured to see the .env file
