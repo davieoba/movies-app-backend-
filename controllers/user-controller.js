@@ -6,6 +6,8 @@ const User = require('../models/user')
 const catchAsync = require('./../utils/catchAsync')
 const AppError = require('./../utils/app-error')
 const util = require('util')
+const sendEmail = require('./../utils/sendmail')
+const crypto = require('crypto')
 
 exports.signup = catchAsync(async (req, res, next) => {
   const user = await User.create({
@@ -155,6 +157,82 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   })
 })
 
-// exports.forgotPassword = catchAsync(async (req, res, next) => {
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body
 
-// });
+  if (!email)
+    return next(new AppError('Please provide an email address', '400'))
+
+  const user = await User.findOne({ email: email })
+  if (!user)
+    return next(new AppError('User does not exist, Create an Account', '404'))
+
+  const resetToken = user.forgotPasswordToken()
+  await user.save()
+
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/resetpassword/${resetToken}`
+
+  const message = `Forgot your password ?, please enter your new password and confirm password to ${url}.\n If you did not forget your password, please ignore this message`
+
+  await sendEmail({
+    email: user.email,
+    subject: 'This link would expire in the next 10 minutes',
+    message: message
+  })
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Email sent successfully'
+      })
+    })
+    .catch(async (err) => {
+      user.passwordResetToken = undefined
+      user.passwordResetExpires = undefined
+      await user.save()
+      return next(
+        new AppError(
+          'Email not sent successfully to the user, try again',
+          '500'
+        )
+      )
+    })
+})
+
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.resetToken)
+    .digest('hex')
+
+  // console.log(hashedToken)
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() }
+  })
+  console.log(user)
+  if (!user) return next(new AppError('User not found', '404'))
+
+  user.password = req.body.password
+  user.passwordConfirm = req.body.passwordConfirm
+  user.passwordChangedAt = new Date().getTime()
+  user.passwordResetToken = undefined
+  user.passwordResetExpires = undefined
+
+  await user.save()
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES
+  })
+
+  if (!token)
+    return next(new AppError('User was not created successfully', '401'))
+
+  res.status(200).json({
+    message: 'success',
+    data: {
+      user
+    },
+    token
+  })
+})
