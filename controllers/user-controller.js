@@ -8,6 +8,7 @@ const AppError = require('./../utils/app-error')
 const util = require('util')
 const sendEmail = require('./../utils/sendmail')
 const crypto = require('crypto')
+const Email = require('./../utils/Email')
 
 exports.signup = catchAsync(async (req, res, next) => {
   const user = await User.create({
@@ -25,6 +26,10 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   if (!token)
     return next(new AppError('User was not created successfully', '401'))
+
+  const url = `${req.protocol}://${req.get('host')}/api/v1/users`
+
+  new Email(user, url).sendWelcome()
 
   res.status(200).json({
     message: 'success',
@@ -176,11 +181,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   const message = `Forgot your password ?, please enter your new password and confirm password to ${url}.\n If you did not forget your password, please ignore this message`
 
-  await sendEmail({
-    email: user.email,
-    subject: 'This link would expire in the next 10 minutes',
-    message: message
-  })
+  await new Email(user, url)
+    .sendPasswordReset()
     .then(() => {
       res.status(200).json({
         status: 'success',
@@ -234,5 +236,32 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
       user
     },
     token
+  })
+})
+
+exports.updateUser = catchAsync(async (req, res, next) => {
+  // some code
+  const updates = ['name', 'email']
+
+  for (const x in req.body) {
+    if (!updates.includes(x)) {
+      delete req.body[x]
+    }
+  }
+
+  console.log(req.body)
+
+  const user = await User.findByIdAndUpdate(req.user._id, req.body, {
+    new: true,
+    runValidators: true
+  })
+
+  if (!user) return next(new AppError('Error updating profile', '401'))
+
+  res.status(200).json({
+    message: 'success',
+    result: {
+      data: user
+    }
   })
 })

@@ -20,7 +20,8 @@ const reviewSchema = new mongoose.Schema({
     minlength: 10,
     maxlength: 350,
     required: [true, 'A review should be atleast 10 characters']
-  }
+  },
+  timestamp: Date
 })
 
 const Review = mongoose.model('Review', reviewSchema)

@@ -16,6 +16,10 @@ router
   .route('/updatepassword')
   .post(userController.protect, userController.updatePassword)
 
+router
+  .route('/updateuser')
+  .post(userController.protect, userController.updateUser)
+
 router.route('/forgotpassword').post(userController.forgotPassword)
 router.route('/resetpassword/:resetToken').post(userController.resetPassword)
 module.exports = router
