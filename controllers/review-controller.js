@@ -3,7 +3,13 @@ const catchAsync = require('./../utils/catchAsync')
 const AppError = require('./../utils/app-error')
 
 exports.createReview = catchAsync(async (req, res, next) => {
-  const review = await Review.create(req.body)
+  const review = await Review.create({
+    user: req.body.user,
+    movie: req.body.movie,
+    rating: req.body.rating,
+    review: req.body.review,
+    timestamp: new Date()
+  })
 
   if (!review) return next(new AppError('Review was not created ', '401'))
 
