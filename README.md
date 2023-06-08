@@ -2,7 +2,7 @@
 This is the backend for the movies app to be used as a learning resource and for my personal portfolio
 
 # scripts and setup
-
+`npm start`
 
 
 - [ ] install node_modules and dependencies run `npm install` from the root directory.
